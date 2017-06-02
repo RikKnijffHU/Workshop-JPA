@@ -44,8 +44,8 @@ public class ReportingIntegrationTest {
     @Test
     public void testReport() throws Exception {
 
-        Concert concertMetal1 = helper.createConcert("Five Finger Death Punch", Genre.metal, "Utrecht");
-        Concert concertMetal2 = helper.createConcert("Disturbed", Genre.metal, "Apeldoorn");
+        Concert concertMetal1 = helper.createConcert("Five Finger Death Punch", Genre.Metal, "Utrecht");
+        Concert concertMetal2 = helper.createConcert("Disturbed", Genre.Metal, "Apeldoorn");
         Concert concertElec= helper.createConcert("Pogo", Genre.electronica, "Amsterdam");
         Account accountZeist = helper.createAccount("user@zeist.museum", "Zeist");
         Account accountNieuwegein = helper.createAccount("user@nieuwegein.museum", "Nieuwegein");

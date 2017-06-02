@@ -11,5 +11,5 @@ package nl.first8.hu.ticketsale.artist;
  */
 public enum Genre {
    
-        Grindcore,Hardcore, Trance , House, Classic, Pop, electronica, Rock
+        Grindcore,Hardcore, Trance , House, Classic, Pop, electronica, Rock, Metal
 }
