@@ -17,12 +17,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import java.io.IOException;
-import java.io.UnsupportedEncodingException;
 import java.util.List;
 
-import static org.hamcrest.Matchers.contains;
+import nl.first8.hu.ticketsale.artist.Genre;
 import static org.hamcrest.Matchers.is;
-import static org.hamcrest.Matchers.not;
 import static org.junit.Assert.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
 import static org.springframework.test.web.servlet.result.MockMvcResultMatchers.content;
@@ -46,9 +44,9 @@ public class ReportingIntegrationTest {
     @Test
     public void testReport() throws Exception {
 
-        Concert concertMetal1 = helper.createConcert("Five Finger Death Punch", "metal", "Utrecht");
-        Concert concertMetal2 = helper.createConcert("Disturbed", "metal", "Apeldoorn");
-        Concert concertElec= helper.createConcert("Pogo", "electronica", "Amsterdam");
+        Concert concertMetal1 = helper.createConcert("Five Finger Death Punch", Genre.metal, "Utrecht");
+        Concert concertMetal2 = helper.createConcert("Disturbed", Genre.metal, "Apeldoorn");
+        Concert concertElec= helper.createConcert("Pogo", Genre.electronica, "Amsterdam");
         Account accountZeist = helper.createAccount("user@zeist.museum", "Zeist");
         Account accountNieuwegein = helper.createAccount("user@nieuwegein.museum", "Nieuwegein");
         Account accountHouten = helper.createAccount("user@houten.museum", "Houten");

@@ -11,6 +11,8 @@ import org.springframework.stereotype.Service;
 
 import javax.persistence.EntityManager;
 import javax.transaction.Transactional;
+import nl.first8.hu.ticketsale.artist.Artist;
+import nl.first8.hu.ticketsale.artist.Genre;
 
 @Service
 public class TestRepository {
@@ -61,11 +63,11 @@ public class TestRepository {
     }
     
     @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public Concert createDefaultConcert(String artist, String locationName) {
+    public Concert createDefaultConcert(String artistName, String locationName) {
         Location location = createLocation(locationName);
+        Artist artist = createArtist(artistName,Genre.Grindcore);
         Concert concert = new Concert();
         concert.setArtist(artist);
-        concert.setGenre("Grindcore");
         concert.setLocation(location);
         entityManager.persist(concert);
         return concert;
@@ -73,16 +75,25 @@ public class TestRepository {
     }
 
     @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public Concert createConcert(String artist, String genre, String locationName) {
+    public Concert createConcert(String artistName, Genre genre, String locationName) {
         Location location = createLocation(locationName);
         Concert concert = new Concert();
+        Artist artist = createArtist(artistName,genre);
         concert.setArtist(artist);
-        concert.setGenre(genre);
         concert.setLocation(location);
         entityManager.persist(concert);
         return concert;
 
     }
+    
+    @Transactional(Transactional.TxType.REQUIRES_NEW)
+    private Artist createArtist(String artistName, Genre genre) {
+		Artist artist = new Artist();
+		artist.setGenre(genre);
+		artist.setName(artistName);
+		entityManager.persist(artist);
+		return artist;
+	}
 
     @Transactional(Transactional.TxType.REQUIRES_NEW)
     private Location createLocation(String locationName) {

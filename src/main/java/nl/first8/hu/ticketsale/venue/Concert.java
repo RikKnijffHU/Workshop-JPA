@@ -7,6 +7,7 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
+import nl.first8.hu.ticketsale.artist.Artist;
 @Entity
 @Data
 @NoArgsConstructor
@@ -17,9 +18,10 @@ public class Concert implements Serializable {
     @GeneratedValue
     private Long id;
 
-    private String artist;
+     @OneToOne
+    @JoinColumn(name = "artist_id", referencedColumnName = "id")
 
-    private String genre;
+    private Artist artist;
 
     @ManyToOne
     @JoinColumn(name = "location_id", referencedColumnName = "id")
