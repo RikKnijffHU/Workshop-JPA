@@ -13,11 +13,10 @@ CREATE TABLE artist (
 
 CREATE TABLE concert (
   id BIGINT NOT NULL AUTO_INCREMENT,
-  artist_id VARCHAR(255) NOT NULL,
-  genre_id VARCHAR(255) NOT NULL,
+  artist_id  BIGINT NOT NULL,
   location_id BIGINT NOT NULL,
   PRIMARY KEY(id),
-  FOREIGN KEY(artist_id) REFERENCES artist(id)
+  FOREIGN KEY(artist_id) REFERENCES artist(id),
   FOREIGN KEY (location_id) REFERENCES location(id)
 );
 
