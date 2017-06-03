@@ -17,12 +17,12 @@ import java.io.Serializable;
 public class Ticket implements Serializable {
 
     @Id
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name="concert_id", referencedColumnName = "id")
     private Concert concert;
 
     @Id
-    @ManyToOne
+    @ManyToOne(cascade = {CascadeType.ALL})
     @JoinColumn(name = "account_id", referencedColumnName = "id")
     private Account account;
 

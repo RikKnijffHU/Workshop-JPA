@@ -1,5 +1,7 @@
 package nl.first8.hu.ticketsale.util;
 
+import java.time.Instant;
+import java.util.Date;
 import nl.first8.hu.ticketsale.registration.Account;
 import nl.first8.hu.ticketsale.registration.AccountInfo;
 import nl.first8.hu.ticketsale.sales.Ticket;
@@ -67,6 +69,7 @@ public class TestRepository {
         Location location = createLocation(locationName);
         Artist artist = createArtist(artistName,Genre.Grindcore);
         Concert concert = new Concert();
+        concert.setConcertDate(Date.from(Instant.now()));
         concert.setArtist(artist);
         concert.setLocation(location);
         entityManager.persist(concert);
@@ -75,10 +78,11 @@ public class TestRepository {
     }
 
     @Transactional(Transactional.TxType.REQUIRES_NEW)
-    public Concert createConcert(String artistName, Genre genre, String locationName) {
+    public Concert createConcert(String artistName, String genre, String locationName, Date date) {
         Location location = createLocation(locationName);
+         Artist artist = createArtist(artistName,Genre.valueOf(genre));
         Concert concert = new Concert();
-        Artist artist = createArtist(artistName,genre);
+        concert.setConcertDate(date);
         concert.setArtist(artist);
         concert.setLocation(location);
         entityManager.persist(concert);

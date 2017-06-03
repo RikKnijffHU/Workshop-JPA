@@ -6,6 +6,7 @@ import org.springframework.stereotype.Repository;
 import javax.persistence.EntityManager;
 import javax.persistence.TypedQuery;
 import java.util.List;
+import nl.first8.hu.ticketsale.artist.Genre;
 
 @Repository
 public class ReportRepository {
@@ -18,11 +19,11 @@ public class ReportRepository {
     }
 
     public List<LocationReport> findGenreLocations(String genre) {
-        String jpql = "SELECT DISTINCT NEW nl.first8.hu.ticketsale.reporting.LocationReport(t.concert.artist, t.concert.location.name, t.account.info.city) " +
+        String jpql = "SELECT DISTINCT NEW nl.first8.hu.ticketsale.reporting.LocationReport(t.concert.artist.name, t.concert.location.name, t.account.info.city) " +
                 "FROM Ticket t " +
                 "WHERE t.concert.genre = :genre";
         TypedQuery<LocationReport> query = entityManager.createQuery(jpql, LocationReport.class);
-        query.setParameter("genre", genre);
+        query.setParameter("genre", Genre.valueOf(genre));
         return query.getResultList();
     }
 }

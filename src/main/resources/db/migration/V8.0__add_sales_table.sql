@@ -11,3 +11,11 @@ CREATE TABLE sale (
   CONSTRAINT ticket_concert_id FOREIGN KEY(ticket_concert_id) REFERENCES ticket(concert_id),
   CONSTRAINT chk_price CHECK (price > 0)
 );
+
+CREATE TABLE audittrail (
+  id BIGINT NOT NULL AUTO_INCREMENT,
+  sale_id BIGINT NOT NULL,
+  account_id BIGINT NOT NULL,
+
+  CONSTRAINT pk_audittrail PRIMARY KEY(id)
+);

@@ -17,9 +17,10 @@ import org.springframework.test.web.servlet.MockMvc;
 import org.springframework.test.web.servlet.MvcResult;
 
 import java.io.IOException;
+import java.text.SimpleDateFormat;
 import java.util.List;
 
-import nl.first8.hu.ticketsale.artist.Genre;
+
 import static org.hamcrest.Matchers.is;
 import static org.junit.Assert.assertThat;
 import static org.springframework.test.web.servlet.request.MockMvcRequestBuilders.get;
@@ -43,10 +44,11 @@ public class ReportingIntegrationTest {
 
     @Test
     public void testReport() throws Exception {
+        SimpleDateFormat dateformat = new SimpleDateFormat("dd/MM/yyyy");
 
-        Concert concertMetal1 = helper.createConcert("Five Finger Death Punch", Genre.Metal, "Utrecht");
-        Concert concertMetal2 = helper.createConcert("Disturbed", Genre.Metal, "Apeldoorn");
-        Concert concertElec= helper.createConcert("Pogo", Genre.electronica, "Amsterdam");
+        Concert concertMetal1 = helper.createConcert("Five Finger Death Punch", "Metal", "Utrecht", dateformat.parse("17/05/2017"));
+        Concert concertMetal2 = helper.createConcert("Disturbed", "Metal", "Apeldoorn",dateformat.parse("17/06/2017"));
+        Concert concertElec= helper.createConcert("Pogo", "electronica", "Amsterdam",dateformat.parse("17/07/2017"));
         Account accountZeist = helper.createAccount("user@zeist.museum", "Zeist");
         Account accountNieuwegein = helper.createAccount("user@nieuwegein.museum", "Nieuwegein");
         Account accountHouten = helper.createAccount("user@houten.museum", "Houten");

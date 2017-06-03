@@ -56,7 +56,7 @@ public class RegistrationIntegrationTest {
         JdbcTestUtils.deleteFromTables(jdbcTemplate, "ticket", "account", "account_info");
     }
 
-    @Test
+   @Test
     public void testInsert() throws Exception {
         final AccountInfo expectedInfo = new AccountInfo("Kerkenbos 1059B", "024 – 348 35 70", "Nijmegen");
         final Account expectedAccount = new Account(1L, "f.dejong@first8.nl", expectedInfo);

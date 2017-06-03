@@ -15,6 +15,7 @@ CREATE TABLE concert (
   id BIGINT NOT NULL AUTO_INCREMENT,
   artist_id  BIGINT NOT NULL,
   location_id BIGINT NOT NULL,
+  concertDate DATE DEFAULT NULL,
   PRIMARY KEY(id),
   FOREIGN KEY(artist_id) REFERENCES artist(id),
   FOREIGN KEY (location_id) REFERENCES location(id)

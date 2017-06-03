@@ -7,7 +7,9 @@ import lombok.Data;
 import lombok.NoArgsConstructor;
 import javax.persistence.*;
 import java.io.Serializable;
+import java.util.Date;
 import nl.first8.hu.ticketsale.artist.Artist;
+import nl.first8.hu.ticketsale.artist.Genre;
 @Entity
 @Data
 @NoArgsConstructor
@@ -26,5 +28,10 @@ public class Concert implements Serializable {
     @ManyToOne
     @JoinColumn(name = "location_id", referencedColumnName = "id")
     private Location location;
+    
+    @Temporal(TemporalType.TIMESTAMP)
+    private Date concertDate;
+    
+     
 
 }

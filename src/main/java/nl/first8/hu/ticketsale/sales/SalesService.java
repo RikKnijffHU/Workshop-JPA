@@ -32,7 +32,7 @@ public class SalesService {
     public void insertSale(Long accountId, Long ticketId, Integer price) {
         insertSale(accountId, ticketId, price, Date.from(Instant.now()));
     }
-
+    
     protected void insertSale(Long accountId, Long concertId, Integer price, final Date timestamp) {
         Account account = registrationRepository.findById(accountId).orElseThrow(() -> new RuntimeException("Unknown account Id " + accountId));
         Concert concert = venueRepository.findConcertById(concertId).orElseThrow(() -> new RuntimeException("Unknown concert Id " + concertId));
@@ -46,6 +46,11 @@ public class SalesService {
         sale.setSellDate(timestamp);
 
         salesRepository.insert(sale);
+        
+        AuditTrail auditTrail = new AuditTrail();
+        auditTrail.setAccount_id(sale.getTicket().getAccount().getId());
+        auditTrail.setSale_id(sale.getId());
+        salesRepository.insert(auditTrail);
     }
 
     public Optional<Sale> getSale(Long accountId, Long concertId) {

@@ -9,5 +9,5 @@ spring:
     jpa:
         properties:
             hibernate: org.hibernate.dialect.MySQL5InnoDBDialect
-
+        generate-ddl: true
 ...
